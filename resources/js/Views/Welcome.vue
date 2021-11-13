@@ -2,7 +2,7 @@
 <div class="min-h-screen flex flex-col ">
     <div class="p-4 absolute flex  top-1 right-1 text-gray-500 text-sm font-semibold uppercase tracking-widest">
       <div v-if="user">
-        <router-link class="px-6 " :to="{ name: 'home' }">
+        <router-link class="px-6 " :to="{ name: 'reclamations' }">
           Home
         </router-link>
       </div>

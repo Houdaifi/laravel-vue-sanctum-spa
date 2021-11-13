@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ReclamationsController;
 use App\Http\Controllers\RegisterController;
@@ -26,7 +25,6 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::patch('/profile', ProfileController::class);
     Route::patch('/password', PasswordController::class);
     Route::get('/user', UserController::class);
     Route::post('/logout', [AuthController::class, 'logout']);

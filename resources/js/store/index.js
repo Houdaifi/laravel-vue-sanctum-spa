@@ -55,14 +55,6 @@ export default createStore({
                 }).catch((err) => {
                     throw err.response
                 });
-                // const res = await axios.post('/api/login', payload);
-
-                // if (res.status != 200) throw res;
-
-                // if (res.data.status_code != 200) throw res.data.message;
-                
-                
-                
             } catch (e) {
                 throw e
             }
@@ -96,21 +88,8 @@ export default createStore({
                 
             })
         },
-        async profile({commit},payload) {
-            await axios.patch('/api/profile', payload).then((res) => {
-                commit('setUser', res.data.user);
-            }).catch((err) => {
-                throw err.response
-            })
-        },
-        async password({commit},payload) {
-            await axios.patch('/api/password', payload).then((res) => {
-                
-            }).catch((err) => {
-                throw err.response
-            })
-        },
 
+        
         async get_reclamations({commit}){
             const {data} = await axios.get('/api/reclamations')
             commit('SET_RECLAMATIONS', data)

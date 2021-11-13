@@ -18,7 +18,7 @@
                 </div>
 
                 <div v-if="drop" @click="drop=!drop" class="absolute bg-white border z-10 shadow-md flex w-auto flex-col ">
-                    <router-link class="p-4 flex items-center" :to="{ name: 'settings' }">
+                    <router-link class="p-4 flex items-center" :to="{ name: '' }">
                         <CogIcon class="h-6 w-6 text-gray-700 mr-2"></CogIcon>
                         Settings
                     </router-link>
