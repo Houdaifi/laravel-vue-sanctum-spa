@@ -9,12 +9,7 @@
 
     <div class="p-4 bg-white">
 
-                    <Success  v-if="success" :content="success" @close="success=null" />
-
-                    <Errors  v-if="errors" :content="errors" @close="errors=null" />
-                    <!-- <div v-if="error" class="md:w-10/12 md:p-2 w-full mx-auto text-sm text-red-500 text-white text-center">
-                        {{error}}
-                    </div> -->
+                    
 
                     <form class="md:w-10/12 md:p-4 w-full mx-auto" @submit.prevent="update">
                         <div class=" w-full my-1 py-2 sm:flex  sm:items-center sm:justify-between">
@@ -43,16 +38,10 @@
 
 <script>
 import { XIcon } from '@heroicons/vue/solid';
-import Errors from '../components/Errors.vue';
-import Success from '../components/Success.vue';
 import moment from 'moment'
-import CircleSvg from '../components/CircleSvg.vue';
 export default {
     components : {
         XIcon,
-       Errors,
-       Success,
-        CircleSvg
     },
     data() {
         return {

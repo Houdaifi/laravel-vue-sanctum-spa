@@ -3,10 +3,10 @@
         <div class="max-w-screen-lg mx-auto flex justify-between">
             <div class=" p-4 ">
                 <router-link class="font-semibold tracking-wider	text-lg " :to="{name : 'welcome'}">
-                        Laravel Vue
+                        DCA reclamations
                 </router-link> 
-                <router-link active-class="font-semibold text-gray-900" v-if="user" class="px-6 text-gray-500 hover:text-gray-900 " :to="{ name: 'home' }">
-                    Home
+                <router-link active-class="font-semibold text-gray-900" v-if="user" class="px-6 text-gray-500 hover:text-gray-900 " :to="{ name: 'reclamations' }">
+                    Reclamations
                 </router-link>
             </div>
 

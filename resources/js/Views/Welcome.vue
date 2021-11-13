@@ -18,11 +18,7 @@
 
     <div class="flex-1 flex flex-col items-center justify-center text-gray-600 ">
             <div class="mb-6  text-center  tracking-wider text-8xl sm:mb-8 sm:text-8xl">
-                Laravel Vue
-            </div>
-
-            <div class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase">
-                <a href="https://github.com/hijenhek">github.com/HijenHek</a>
+                DCA RECLAMATIONS
             </div>
         </div>
   </div>

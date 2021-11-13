@@ -58,13 +58,9 @@
 
 <script>
 import {XIcon} from '@heroicons/vue/outline'
-import CircleSvg from '../components/CircleSvg.vue';
-import Errors from '../components/Errors.vue';
 export default {
     components :{
         XIcon ,
-        CircleSvg,
-        Errors
     },
     data() {
         return {

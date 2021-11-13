@@ -6,7 +6,9 @@ import sharedMutations from 'vuex-shared-mutations';
 export default createStore({
     state() {
         return {
-            user: null
+            user: null,
+            reclamations: {},
+            reclamation: {}
         }
     },
     getters: {
@@ -20,12 +22,24 @@ export default createStore({
         id(state) {
             if (state.user) return state.user.id
             return null
+        },
+        reclamations(state){
+            return state.reclamations
+        },
+        reclamation(state){
+            return state.reclamation
         }
     },
     mutations: {
 
         setUser(state, payload) {
             state.user = payload;
+        },
+        SET_RECLAMATIONS(state, payload){
+            state.reclamations = payload
+        },
+        SET_RECLAMATION(state, payload){
+            state.reclamation = payload
         }
 
     },
@@ -97,19 +111,15 @@ export default createStore({
             })
         },
 
-        async verifyResend({dispatch} , payload){
-            let res = await axios.post('/api/verify-resend' , payload)
-            if (res.status != 200) throw res
-            return res
-        },
-        async verifyEmail({dispatch} , payload){
-            let res = await axios.post('/api/verify-email/' + payload.id + '/' + payload.hash)
-            if (res.status != 200) throw res
-            dispatch('getUser')
-                return res
-            
+        async get_reclamations({commit}){
+            const {data} = await axios.get('/api/reclamations')
+            commit('SET_RECLAMATIONS', data)
         },
 
+        async get_reclamation({commit}, ticket_id){
+            const {data} = await axios.get(`/api/reclamations/${ticket_id}`)
+            commit('SET_RECLAMATION', data)
+        }
 
     },
     plugins: [sharedMutations({ predicate: ['setUser'] })],

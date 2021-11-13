@@ -10,7 +10,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
  
     if (store.getters.user) {
-      if (to.matched.some(route => route.meta.guard === 'guest')) next({ name: 'home' })
+      if (to.matched.some(route => route.meta.guard === 'guest')) next({ name: 'reclamations' })
       else next();
       
     } else {

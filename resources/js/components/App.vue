@@ -3,7 +3,6 @@
         <div>
             <nav-bar v-if="this.$route.name !== 'welcome'"></nav-bar>
         </div>
-        <VerifyNotice :id="id" v-if="(this.$route.name !== 'welcome') && id && !verified" />
         <div>
           
           <router-view class="p-6 " v-slot="{ Component }">
@@ -17,20 +16,14 @@
 
 <script>
 import NavBar from './NavBar.vue'
-import VerifyNotice from './VerifyNotice.vue'
 export default {
   computed : {
     id () {
       return this.$store.getters.id 
-    },
-    verified () {
-      return this.$store.getters.verified 
     }
-
   },
   components : {
-    NavBar,
-    VerifyNotice
+    NavBar
   },
   
 }
