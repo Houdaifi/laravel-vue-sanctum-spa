@@ -90,6 +90,8 @@ class ReclamationsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['comment' => 'required|max:50']);
+
         $reclamation = Reclamation::find($id);
 
         $reclamation->update([
