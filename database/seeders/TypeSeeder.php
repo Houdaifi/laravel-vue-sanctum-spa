@@ -15,7 +15,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Techniques,', 'Matérielles', 'Protocole sanitaire', 'Salles'];
+        $types = ['Techniques', 'Matérielles', 'Protocole sanitaire', 'Salles'];
 
         for ($i=0; $i < 4; $i++) { 
             DB::table('types')->insert([

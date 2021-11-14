@@ -40,6 +40,9 @@ export default createStore({
         },
         SET_RECLAMATION(state, payload){
             state.reclamation = payload
+        },
+        ADD_RECLAMATION(state, reclamation){
+            state.reclamations.data.unshift(reclamation)
         }
 
     },
@@ -96,8 +99,9 @@ export default createStore({
         },
 
         async get_reclamation({commit}, ticket_id){
-            const {data} = await axios.get(`/api/reclamations/${ticket_id}`)
-            commit('SET_RECLAMATION', data)
+            await axios.get(`/api/reclamations/${ticket_id}`).then((response) => {
+                commit('SET_RECLAMATION', response.data)
+            })  
         }
 
     },

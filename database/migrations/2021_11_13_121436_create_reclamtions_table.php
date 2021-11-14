@@ -17,7 +17,7 @@ class CreateReclamtionsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('text');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('statut_id');

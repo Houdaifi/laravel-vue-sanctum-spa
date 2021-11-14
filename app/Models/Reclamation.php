@@ -11,6 +11,8 @@ class Reclamation extends Model
 
     protected $table = 'reclamtions';
 
+    protected $guarded = [];
+
     public function users()
     {
         return $this->hasMany(User::class, 'id', 'user_id');

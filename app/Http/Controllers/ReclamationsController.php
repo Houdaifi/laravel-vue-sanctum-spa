@@ -37,7 +37,24 @@ class ReclamationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reclamation = new Reclamation();
+
+        $this->validate($request, [
+            'title' => 'required|max:50',
+            'text' => 'required|max:255',
+            'type_id' => 'required|integer'
+        ]);
+
+        $created_reclamation = $reclamation->create([
+            'title' => $request->title,
+            'text' => $request->text,
+            'comment' => '',
+            'user_id' => Auth()->user()->id,
+            'type_id' => $request->type_id,
+            'statut_id' => 1
+        ]);
+
+        return $created_reclamation->load('users:id,name', 'types', 'status');
     }
 
     /**
@@ -73,7 +90,17 @@ class ReclamationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reclamation = Reclamation::find($id);
+
+        $reclamation->update([
+            'comment' => $request->comment,
+            'statut_id' => 2
+        ]);
+
+        $reclamation->save();
+
+        return $reclamation->load('users:id,name', 'types', 'status');;
+
     }
 
     /**

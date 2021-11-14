@@ -12,7 +12,6 @@
     "devDependencies": {
         "@vue/compiler-sfc": "^3.0.11",
         "autoprefixer": "^10.2.5",
-        "axios": "^0.21",
         "laravel-mix": "^6.0.0-beta.17",
         "lodash": "^4.17.19",
         "postcss": "^8.2.12",
@@ -22,7 +21,9 @@
     },
     "dependencies": {
         "@heroicons/vue": "^1.0.1",
+        "axios": "^0.24.0",
         "moment": "^2.29.1",
+        "vform": "^2.1.2",
         "vue-router": "^4.0.6",
         "vuex": "^4.0.0",
         "vuex-shared-mutations": "^1.0.2"
