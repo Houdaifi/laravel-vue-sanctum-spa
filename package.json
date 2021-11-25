@@ -12,12 +12,12 @@
     "devDependencies": {
         "@vue/compiler-sfc": "^3.0.11",
         "autoprefixer": "^10.2.5",
-        "laravel-mix": "^6.0.0-beta.17",
+        "laravel-mix": "^6.0.39",
         "lodash": "^4.17.19",
-        "postcss": "^8.2.12",
-        "tailwindcss": "^2.1.1",
+        "postcss": "^8.3.1",
+        "tailwindcss": "^2.2.19",
         "vue": "^3.0.11",
-        "vue-loader": "^16.2.0"
+        "vue-loader": "^16.8.3"
     },
     "dependencies": {
         "@heroicons/vue": "^1.0.1",

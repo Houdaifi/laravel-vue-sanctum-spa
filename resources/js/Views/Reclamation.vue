@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-3/4 mx-auto">
         <div class="flex justify-between items-center border">
             <div class="p-4 font-semibold">{{reclamation.title}}</div>
             <div class="flex space-x-4 items-center px-3">
@@ -14,13 +14,14 @@
             {{reclamation.text}}
         </div>
         <!-- Comment -->
-        <div class="p-4 bg-white">
-            <textarea class="w-full p-4 rounded border overflow-y-hidden" v-model="form.comment" 
-            :disabled="!isEmpty" :class="[{'bg-gray-200' : !isEmpty }]"></textarea>
+        <div class="p-4 bg-white" v-if="(user.role == 'admin' || reclamation.statut_id == 2)">
+            <textarea class="w-full p-4 rounded border" v-html="form.comment" v-model="reclamation.comment"
+                :disabled="isUser" :class="[{'bg-gray-200' : isUser }]">
+            </textarea>
             <div class="text-xs text-red-500 text-left" v-if="form.errors.has('comment')" v-html="form.errors.get('comment')" />
 
             <div class="flex justify-end" v-for="reclamation_statut in reclamation.status" :key="reclamation_statut.id">
-                <button class="px-3 py-2 rounded bg-blue-400 mt-2 text-white" @click="submit" v-if="reclamation_statut.statut == 'created'">
+                <button class="px-3 py-2 rounded bg-blue-400 mt-2 text-white" @click="submit" v-if="!isUser">
                     Submit
                 </button>
             </div>
@@ -43,10 +44,11 @@ export default {
         reclamation() {
             return this.$store.getters.reclamation
         },
-        isEmpty(){
-            if(this.reclamation.status){
-                return this.reclamation.status[0].statut == 'created'
-            }
+        user() {
+            return this.$store.getters.user
+        },
+        isUser(){
+            this.user.role == 'user'
         }
     },
     methods:{
@@ -64,8 +66,10 @@ export default {
         this.get_reclamation(this.$route.params.id)
     },
     updated(){
-        this.form.comment = this.reclamation.comment
+        if(this.reclamation.comment){
+            this.form.comment = this.reclamation.comment
+            console.log(this.form.comment)
+        }
     }
-
 }
 </script>

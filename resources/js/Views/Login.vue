@@ -8,7 +8,7 @@
 
                 <div class="p-4 bg-white">
                     
-
+                    <Errors type="danger" v-if="errors" :content="errors" @close="errors=null" />
 
                     <form class="md:w-10/12 md:p-4 w-full mx-auto" @submit.prevent="login">
                         <div class=" w-full my-1 py-2 sm:flex  sm:items-center sm:justify-between">
@@ -43,10 +43,14 @@
 
 
 <script>
+import CircleSvg from '../components/CircleSvg.vue'
 import { XIcon } from '@heroicons/vue/solid';
+import Errors from '../components/Errors.vue';
 export default {
-    components : {
+      components : {
         XIcon,
+        CircleSvg,
+        Errors
     },
     data() {
         return {

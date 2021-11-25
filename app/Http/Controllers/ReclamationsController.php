@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ReclamationsController extends Controller
 {
@@ -12,11 +13,24 @@ class ReclamationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $reclamations = new Reclamation();
 
-        return $reclamations->with('users:id,name', 'types', 'status')->paginate(5);
+        if(Auth()->user()->role === 'user'):
+            $reclamations = $reclamations->where('user_id', Auth()->user()->id);
+        endif;
+
+        if($request->trier_par_statut !== "ALL"){
+            $reclamations = $reclamations->where('statut_id', $request->trier_par_statut);
+        }
+
+        if($request->trier_par_type !== "ALL"){
+            $reclamations = $reclamations->where('type_id', $request->trier_par_type);
+        }
+
+        return $reclamations->with('users:id,name', 'types', 'status')->paginate(10);
     }
 
     /**
@@ -66,6 +80,10 @@ class ReclamationsController extends Controller
     public function show($id)
     {
         $reclamation = Reclamation::find($id);
+
+        if(Auth()->user()->id !== $reclamation->user_id && Auth()->user()->role == 'user'):
+            return response()->json(['message' => '403 Forbidden'], Response::HTTP_FORBIDDEN);
+        endif;
 
         return $reclamation->load('users:id,name', 'types', 'status');
     }

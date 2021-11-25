@@ -82,7 +82,6 @@ export default createStore({
                 }).catch((err) => {
                     
                 })
-            
         },
         async getUser({commit}) {
             await axios.get('/api/user').then((res) => {
@@ -91,21 +90,28 @@ export default createStore({
                 
             })
         },
-
         
-        async get_reclamations({commit}){
-            const {data} = await axios.get('/api/reclamations')
+        async get_reclamations({commit}, payload){
+            let page = payload.page
+            let trier_par_statut = payload.trier_par_statut
+            let trier_par_type = payload.trier_par_type
+            const {data} = await axios.get('/api/reclamations?page='+page, { params: {
+                trier_par_statut, trier_par_type
+              }})
             commit('SET_RECLAMATIONS', data)
         },
 
         async get_reclamation({commit}, ticket_id){
-            await axios.get(`/api/reclamations/${ticket_id}`).then((response) => {
-                commit('SET_RECLAMATION', response.data)
-            })  
+            try {
+                await axios.get(`/api/reclamations/${ticket_id}`).then((response) => {
+                    commit('SET_RECLAMATION', response.data)
+                });
+            } catch (error) {
+                alert(error)
+                window.location.href = "/reclamations";
+            }
         }
 
     },
     plugins: [sharedMutations({ predicate: ['setUser'] })],
-
-
 })

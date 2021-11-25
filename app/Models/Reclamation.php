@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reclamation extends Model
 {
@@ -26,5 +27,10 @@ class Reclamation extends Model
     public function status()
     {
         return $this->hasMany(Statut::class, 'id', 'statut_id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return (New Carbon($value))->diffForHumans();
     }
 }
